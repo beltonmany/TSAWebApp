@@ -1,0 +1,156 @@
+
+--
+-- Table structure for table `events`
+--
+
+CREATE TABLE `events` (
+  `id` int(11) NOT NULL,
+  `eDate` date DEFAULT NULL,
+  `eName` text,
+  `seats` int(11) NOT NULL,
+  `max` int(11) DEFAULT NULL,
+  `isOnsite` tinytext,
+  `isTeamEvent` tinytext,
+  `isQualifying` tinytext,
+  `description` text
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `events`
+--
+
+INSERT INTO `events` (`id`, `eDate`, `eName`, `seats`, `max`, `isOnsite`, `isTeamEvent`, `isQualifying`, `description`) VALUES
+(203, NULL, 'Architectural Design', 1, 3, 'Y', 'Y', 'Y', NULL),
+(204, NULL, 'Biotechnology Design', 2, 3, 'N', 'Y', 'N', NULL),
+(205, NULL, 'Board Game Design', 2, 2, 'Y', 'Y', 'N', NULL),
+(271, NULL, 'Chapter Team - Written Test', 0, 9, 'Y', 'N', 'N', NULL),
+(207, NULL, 'Children\'s Stories', 0, 2, 'Y', 'Y', 'N', NULL),
+(208, NULL, 'Coding', 0, 2, 'Y', 'Y', 'N', NULL),
+(209, NULL, 'CAD Architecture', 0, 5, 'Y', 'N', 'N', NULL),
+(210, NULL, 'CAD Engineering', 0, 5, 'Y', 'N', 'N', NULL),
+(214, NULL, 'Dragster Design', 0, 9, 'N', 'N', 'Y', NULL),
+(215, NULL, 'Engineering Design', 0, 3, 'Y', 'Y', 'N', NULL),
+(217, NULL, 'Extemporaneous Speech', 0, 2, 'Y', 'N', 'Y', NULL),
+(218, NULL, 'Fashion Design and Technology', 0, 3, 'Y', 'Y', 'N', NULL),
+(219, NULL, 'Flight Endurance', 0, 4, 'Y', 'N', 'N', NULL),
+(220, NULL, 'Forensic Science', 2, 4, 'Y', 'Y', 'N', NULL),
+(221, NULL, 'Future Technology Teacher', 0, 2, 'Y', 'N', 'N', NULL),
+(222, NULL, 'Music Production', 0, 2, 'Y', 'Y', 'N', NULL),
+(223, NULL, 'On Demand Video', 0, 2, 'Y', 'Y', 'N', NULL),
+(224, NULL, 'Photographic Technology', 0, 4, 'N', 'N', 'Y', NULL),
+(225, NULL, 'Prepared Presentation', 0, 2, 'Y', 'N', 'Y', NULL),
+(226, NULL, 'Promotional Design', 0, 4, 'N', 'N', 'N', NULL),
+(227, NULL, 'SciVis', 0, 2, 'Y', 'Y', 'N', NULL),
+(228, NULL, 'Software Development', 0, 2, 'Y', 'Y', 'N', NULL),
+(229, NULL, 'Structural Design & Engineering', 0, 5, 'N', 'Y', 'Y', NULL),
+(272, NULL, 'Technology Bowl - Written Test', 0, 9, 'Y', 'N', 'N', NULL),
+(232, NULL, 'Technology Problem Solving', 0, 2, 'Y', 'Y', 'Y', NULL),
+(234, NULL, 'Video Game Design', 0, 3, 'Y', 'Y', 'N', NULL),
+(235, NULL, 'Webmaster', 0, 3, 'N', 'Y', 'N', NULL),
+(256, NULL, 'PA - Robotics', 0, 3, 'Y', 'Y', 'N', NULL),
+(281, NULL, 'R5 - Design Build Test Challenge', 0, 4, 'Y', 'Y', 'N', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `registration`
+--
+
+CREATE TABLE `registration` (
+  `id` tinyint(4) NOT NULL,
+  `eventID` int(11) NOT NULL,
+  `userID` int(11) NOT NULL,
+  `teamId` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `registration`
+--
+
+INSERT INTO `registration` (`id`, `eventID`, `userID`, `teamId`) VALUES
+(43, 205, 58741, NULL),
+(36, 203, 15759, NULL),
+(42, 204, 19312, NULL),
+(41, 220, 19312, NULL),
+(38, 205, 15759, NULL),
+(37, 204, 15759, NULL),
+(44, 220, 58741, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(4) DEFAULT NULL,
+  `first` varchar(50) DEFAULT NULL,
+  `last` varchar(50) DEFAULT NULL,
+  `email` varchar(200) DEFAULT NULL,
+  `password` varchar(200) DEFAULT NULL,
+  `type` varchar(7) DEFAULT NULL,
+  `gradYear` int(11) DEFAULT NULL,
+  `bio` longtext
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `first`, `last`, `email`, `password`, `type`, `gradYear`, `bio`) VALUES
+(15759, 'Aeneas', 'Belton', 'beltonbelton123@gmail.com', 'asd', 'admin', 2021, 'sad boi'),
+(19312, 'Fluffy', 'Boop', 'fluffy@amelie.co.fr', '8roadw4Y', 'student', 2022, ''),
+(58741, 'Jay', 'Seller', 'jseller@lotsofmusicals.com', 'B1gProduc3r', 'student', 2021, '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `wants`
+--
+
+CREATE TABLE `wants` (
+  `userId` int(11) DEFAULT NULL,
+  `reqId` int(11) DEFAULT NULL,
+  `eventId` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `wants`
+--
+
+INSERT INTO `wants` (`userId`, `reqId`, `eventId`) VALUES
+(19312, 15759, -1),
+(19312, 58741, -1);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `events`
+--
+ALTER TABLE `events`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `registration`
+--
+ALTER TABLE `registration`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD UNIQUE KEY `id` (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `registration`
+--
+ALTER TABLE `registration`
+  MODIFY `id` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+COMMIT;
